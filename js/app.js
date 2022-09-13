@@ -18,7 +18,7 @@ const allPlayerSprites = [
     'images/char-boy.png',
     'images/char-cat-girl.png',
     'images/char-princess-girl.png'
-]
+];
 
 let levelSpeed = 0;
 let level = 0;
@@ -63,20 +63,22 @@ Enemy.prototype.update = function(dt) {
     if (this.x > INIT_VAL.canvasWidth) {
         this.x = INIT_VAL.enemyX;
     };
+
+    this.checkCollision();
 };
 
-Enemy.prototype.render = function() {
-    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-};
-
-Enemy.prototype.checkCollision = function(player) {
+Enemy.prototype.checkCollision = function() {
     if (player.x < this.x + INIT_VAL.collision &&
         player.x + INIT_VAL.collision > this.x &&
         player.y < this.y + INIT_VAL.collision &&
         INIT_VAL.collision + player.y > this.y) {
             player.resetGame();
     };
-}
+};
+
+Enemy.prototype.render = function() {
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+};
 
 const allEnemies = [];
 
@@ -84,7 +86,7 @@ INIT_VAL.enemyY.forEach(y => {
     let enemySpeed = Math.round(Math.random() * INIT_VAL.enemyMaxspeed + INIT_VAL.enemyMinSpeed);
     let enemy = new Enemy(INIT_VAL.enemyX, y, enemySpeed);
     allEnemies.push(enemy);
-})
+});
 
 /*---------- Player ----------*/
 
@@ -97,7 +99,7 @@ const Player = function(x, y) {
         const playerNum = +event.target.dataset.playerNum;
         this.sprite = allPlayerSprites[playerNum];
         playerOptionDiv.classList.add('hide');
-    })
+    });
 };
 
 Player.prototype.update = function() {
@@ -116,7 +118,7 @@ Player.prototype.resetGame = function() {
     level = 0;
     levelDiv.innerHTML = `<div class='level'>Level: ${level}/5</div>`;
     lostMessage.classList.add('active_message');
-}
+};
 
 Player.prototype.upLevel = function() {
     this.x = INIT_VAL.playerX;
