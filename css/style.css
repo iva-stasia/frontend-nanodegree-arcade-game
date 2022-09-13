@@ -1,3 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@600&display=swap');
+
 body {
     text-align: center;
+    font-family: 'Source Code Pro', sans-serif;
+    font-size: 30px;
+    position: relative;
 }
+
+canvas {
+    transform: translate(0, 0);
+}
+
+.level {
+    margin: 40px auto -20px;
+}
+
+.player_option {
+    display: flex;
+    flex-wrap:wrap;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 350px;
+    height: 150px;
+    background-color: rgb(157, 161, 173);
+    border: 2px solid rgb(70, 70, 70);
+    border-radius: 10px;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+
+.hide {
+    display: none;
+}
+
+h1 {
+    flex: 0 1 100%;
+    font-size: 20px;
+    margin: 10px 0 0;
+}
+
+.player_img {
+    height: 110px;
+    object-fit: cover;
+    margin-top: -20px;
+    flex: 0 1 90px;
+}
+
+.player_img:hover {
+    cursor: pointer;
+}
+
+.win_message, .lost_message {
+    display: none;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 350px;
+    height: 150px;
+    transform: translate(-50%, -50%);
+    background-color: rgb(157, 161, 173);
+    border: 2px solid rgb(70, 70, 70);
+    border-radius: 10px;
+    z-index: 2;
+    animation: scale 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+}
+
+.active_message {
+    display: block;
+}
+
+h2 {
+    font-size: 30px;
+    color: rgb(0, 0, 0);
+}
+
+span {
+    font-size: 18px;
+}
+    
+@keyframes scale {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+  }
