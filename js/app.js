@@ -60,7 +60,10 @@ const Enemy = function(x, y, speed) {
 Enemy.prototype.update = function(dt) {
     this.x += this.speed * dt + levelSpeed;
 
-    if (this.x > INIT_VAL.canvasWidth) {
+    if (this.x > INIT_VAL.canvasWidth
+        || !playerOptionDiv.classList.contains('hide')
+        || lostMessage.classList.contains('active_message')
+        || winMessage.classList.contains('active_message')) {
         this.x = INIT_VAL.enemyX;
     };
 
